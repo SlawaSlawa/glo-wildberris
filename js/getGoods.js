@@ -1,7 +1,7 @@
 const getGoods = () => {
     const URL = 'https://glo-wildberris-default-rtdb.firebaseio.com/db.json'
     const links = document.querySelectorAll('.navigation-link')
-    // const moreBtn = document.querySelector('.more')
+    const more = document.querySelector('.more')
 
     const renderGoods = (goods) => {
         const goodsContainer = document.querySelector('.long-goods-list')
@@ -52,14 +52,17 @@ const getGoods = () => {
         })
     })
 
-    // moreBtn.addEventListener('click', (evt) => {
-    //     evt.preventDefault()
-    //     getData()
-    // })
-
     if (localStorage.getItem('goods') && window.location.pathname === '/goods.html') {
         renderGoods(JSON.parse(localStorage.getItem('goods')))
     }
+
+    if (more) {
+        more.addEventListener('click', (evt) => {
+            evt.preventDefault()
+            getData()
+        })
+    }
+
 }
 
 getGoods();
